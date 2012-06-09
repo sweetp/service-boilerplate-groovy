@@ -1,0 +1,23 @@
+// needed for IDE (idea only?!) root project
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+// exclude folders wich are no projects
+configure(subprojects.findAll {it.name != 'lib'}) {
+    // create IDE project/modules for subprojects
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+
+    // set standard repos for subprojects
+	repositories {
+		// std maven repo
+		mavenCentral()
+		maven {
+			// groovy++ repo
+			url "http://groovypp.artifactoryonline.com/groovypp/libs-releases-local"
+			// codehaus repo
+			url 'http://repository.codehaus.org'
+			url 'http://snapshots.repository.codehaus.org'
+		}
+	}
+}

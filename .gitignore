@@ -1,0 +1,25 @@
+.idea
+*.iml
+*.iws
+*.ipr
+*.swp
+*.swo
+*.un~
+
+# build stuff
+.gradle/
+target
+build
+bin
+reports
+out
+ivy
+.sonar/
+
+# eclipse
+.classpath
+.project
+.settings
+
+# sweetp
+.sweetp/cli.json

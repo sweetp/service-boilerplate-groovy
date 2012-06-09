@@ -1,0 +1,53 @@
+apply plugin: 'groovy'
+// comment this out if you don't want codenarc or testing
+apply plugin: 'codenarc'
+
+// this should be your service name
+archivesBaseName = 'boilerplate'
+version = '0.1-SNAPSHOT'
+// comment this out if you don't want codenarc
+codenarc {
+	configFile = file('config/codenarc/rules.groovy')
+}
+
+repositories {
+	// if your libs are in repos added in base build.gradle you don't do anything here
+	// add your other maven repos for your libs here:
+	// example: jgit from eclipse
+	// mavenRepo urls: 'http://download.eclipse.org/jgit/maven'
+}
+
+dependencies {
+	/////////////////////////////////////////
+	// standard stuff, should be always needed
+	/////////////////////////////////////////
+	// groovy version to use
+	groovy group: 'org.codehaus.groovy', name: 'groovy', version: '1.8.0'
+	// log4j for logging in your service
+	compile 'log4j:log4j:1.2.16'
+	// add base-groovy lib, included as submodule with git
+	compile project(':lib:base')
+	// this is for testing your service
+	testCompile group: 'junit', name: 'junit', version: '4.8.2'
+	// use gmock or delete if you want something otehr
+	testCompile('org.gmock:gmock:0.8.1') {
+		// gmock wants groovy 1.7.4 but we provide 1.8
+		exclude module: 'groovy-all'
+	}
+	/////////////////////////////////////////
+	// add your libraries here
+	/////////////////////////////////////////
+	// e.g. add jgit, provided by the maven repository addde above
+	// compile 'org.eclipse.jgit:org.eclipse.jgit:0.10.1'
+}
+
+// this builds your service as a jar file so you can copy it to the sweetp server
+jar {
+	// include java and groovy files
+    from sourceSets.main.allJava
+	from sourceSets.main.allGroovy
+	// build fat jar with your libraries in the jar
+	dependsOn configurations.runtime
+	from { configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
