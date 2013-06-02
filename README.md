@@ -1,9 +1,20 @@
 Boilerplate project to have a starting point.
 
-Make sure you have fetched the submodules in the lib directory:
+# Init your project
+
+Remove current git stuff with and set up your own history with:
+
+    rm -rf .git
+    git init
+    git add .
+    git commit -m "init"
+
+Use git submodule to fetch the content of the lib directory:
 
     git submodule init
     git submoudle update
+
+# Buildsystem
 
 This project uses [gradle](http://gradle.org) as build system. Make sure
 you installed version 1.0-milestone9. All other stuff needed comes with
