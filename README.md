@@ -13,6 +13,7 @@ Use git submodule to fetch the content of the lib directory:
 
     git submodule init
     git submodule add https://github.com/sweetp/base-groovy.git lib/base
+    git commit -m "added submodule"
 
 # Buildsystem
 
