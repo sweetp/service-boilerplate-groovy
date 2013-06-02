@@ -12,7 +12,7 @@ Remove current git stuff with and set up your own history with:
 Use git submodule to fetch the content of the lib directory:
 
     git submodule init
-    git submoudle update
+    git submodule add https://github.com/sweetp/base-groovy.git lib/base
 
 # Buildsystem
 

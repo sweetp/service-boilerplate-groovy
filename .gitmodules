@@ -1,3 +1,0 @@
-[submodule "lib/base"]
-	path = lib/base
-	url = git://github.com/sweetp/base-groovy.git
